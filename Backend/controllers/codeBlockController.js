@@ -1,22 +1,38 @@
-const codeBlocks = require('../mockData/codeBlocks');
+const CodeBlock = require('../models/CodeBlock');
 
-exports.getAllCodeBlocks = (req, res) => {
-  res.json(codeBlocks.map(({ id, title }) => ({ id, title })));
+exports.getAllCodeBlocks = async (req, res, next) => {
+  try {
+    const codeBlocks = await CodeBlock.find({}, 'id title');
+    res.json(codeBlocks);
+  } catch (error) {
+    next(error);
+  }
 };
 
-exports.getCodeBlock = (req, res) => {
-  const codeBlock = codeBlocks.find(block => block.id === req.params.id);
-  if (!codeBlock) {
-    return res.status(404).json({ message: 'Code block not found' });
+exports.getCodeBlock = async (req, res, next) => {
+  try {
+    const codeBlock = await CodeBlock.findById(req.params.id);
+    if (!codeBlock) {
+      return res.status(404).json({ message: 'Code block not found' });
+    }
+    res.json(codeBlock);
+  } catch (error) {
+    next(error);
   }
-  res.json(codeBlock);
 };
 
-exports.updateCodeBlock = (req, res) => {
-  const index = codeBlocks.findIndex(block => block.id === req.params.id);
-  if (index === -1) {
-    return res.status(404).json({ message: 'Code block not found' });
+exports.updateCodeBlock = async (req, res, next) => {
+  try {
+    const codeBlock = await CodeBlock.findByIdAndUpdate(
+      req.params.id,
+      { code: req.body.code },
+      { new: true, runValidators: true }
+    );
+    if (!codeBlock) {
+      return res.status(404).json({ message: 'Code block not found' });
+    }
+    res.json(codeBlock);
+  } catch (error) {
+    next(error);
   }
-  codeBlocks[index].code = req.body.code;
-  res.json(codeBlocks[index]);
 };

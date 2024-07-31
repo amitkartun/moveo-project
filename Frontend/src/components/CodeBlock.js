@@ -59,6 +59,19 @@ const CodeBlock = () => {
           {code}
         </SyntaxHighlighter>
       ) : (
+        //--------------------------------------------Trying to solve the Highlighting problem in the Student block
+        // <div className="textarea-wrapper"> 
+        //   <SyntaxHighlighter language="javascript" style={docco} className="syntax-highlighter">
+        //     {code}
+        //   </SyntaxHighlighter>
+        //   <textarea
+        //     value={code}
+        //     onChange={handleCodeChange}
+        //     rows={20}
+        //     cols={80}
+        //   />
+        // </div>
+         //--------------------------------------------
         <textarea
           value={code}
           onChange={handleCodeChange}

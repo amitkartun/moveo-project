@@ -5,10 +5,13 @@ const cors = require('cors');
 const codeBlockRoutes = require('./routes/codeBlockRoutes');
 const errorHandler = require('./middleware/errorHandler');
 const socketManager = require('./websockets/socketManager');
+const connectDB = require('./config/database');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+
+connectDB();
 
 // app.use(cors()); // Enable CORS
 

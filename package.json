@@ -1,51 +1,30 @@
 {
-  "name": "live-code-mentor-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.7.2",
-    "codemirror": "^5.65.17",
-    "concurrently": "^8.2.2",
-    "cors": "^2.8.5",
-    "highlight.js": "^11.10.0",
-    "react": "^18.3.1",
-    "react-codemirror2": "^8.0.0",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.25.1",
-    "react-scripts": "5.0.1",
-    "react-syntax-highlighter": "^15.5.0",
-    "socket.io": "^4.7.5",
-    "socket.io-client": "^4.7.5",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
-    "start:server": "node Backend/server.js",
-    "start:client": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    "name": "code-mentor-project",
+    "version": "1.0.0",
+    "description": "Code Mentor Application with React frontend and Node.js backend",
+    "main": "index.js",
+    "scripts": {
+        "start": "concurrently \"npm run server\" \"npm run client\"",
+        "client": "cd Frontend && npm start",
+        "server": "cd Backend && node server.js",
+        "install:server": "npm install && cd Backend && npm install",
+        "install:client": "npm install && cd Frontend && npm install",
+        "install-all": "npm run install:server && npm run install:client",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "keywords": [
+        "react",
+        "nodejs",
+        "express",
+        "mongodb",
+        "socket.io"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "proxy": "http://localhost:5000"
+    "author": "Your Name",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^6.2.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
 }
