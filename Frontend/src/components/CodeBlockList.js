@@ -5,8 +5,8 @@ const CodeBlockList = ({ codeBlocks }) => {
   return (
     <ul className="code-block-list">
       {codeBlocks.map((block) => (
-        <li key={block.id}>
-          <Link to={`/codeblock/${block.id}`} className="code-block-link" >
+        <li key={block._id}>
+          <Link to={`/codeblock/${block._id}`} className="code-block-link" >
             {block.title}
           </Link>
         </li>

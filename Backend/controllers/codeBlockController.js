@@ -2,7 +2,7 @@ const CodeBlock = require('../models/CodeBlock');
 
 exports.getAllCodeBlocks = async (req, res, next) => {
   try {
-    const codeBlocks = await CodeBlock.find({}, 'id title');
+    const codeBlocks = await CodeBlock.find({}, '_id title code solution');
     res.json(codeBlocks);
   } catch (error) {
     next(error);
