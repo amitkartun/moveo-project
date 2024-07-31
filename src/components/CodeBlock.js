@@ -55,7 +55,7 @@ const CodeBlock = () => {
       <h2>Code Block</h2>
       <p>Your role: {role}</p>
       {role === 'mentor' ? (
-        <SyntaxHighlighter language="javascript" style={docco}>
+        <SyntaxHighlighter language="javascript" style={docco} className="syntax-highlighter">
           {code}
         </SyntaxHighlighter>
       ) : (
