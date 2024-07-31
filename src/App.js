@@ -15,7 +15,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Lobby from './Lobby';
-import CodeBlockPage from './CodeBlockPage';
+//import CodeBlockPage from './CodeBlockPage';
 import TestHighlighting from './TestHighlighting'; // Import the test component
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Lobby />} />
-        <Route path="/codeblock/:blockId" element={<CodeBlockPage />} />
+        {/* <Route path="/codeblock/:blockId" element={<CodeBlockPage />} /> */}
         <Route path="/test-highlight" element={<TestHighlighting />} /> {/* Test route */}
       </Routes>
     </Router>

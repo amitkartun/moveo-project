@@ -9,7 +9,7 @@ const Lobby = () => {
     // Fetch code blocks from the backend
     const fetchCodeBlocks = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/codeblocks');
+        const response = await fetch('/api/codeblocks/');
         const data = await response.json();
         setCodeBlocks(data);
       } catch (error) {

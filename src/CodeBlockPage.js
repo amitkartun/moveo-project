@@ -7,7 +7,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/theme/material.css';
 import './CodeBlockPage.css';
 
-const socket = io('http://localhost:5000'); 
+const socket = io('/api/codeblocks/'); 
 
 const CodeBlockPage = () => {
   const { blockId } = useParams();
@@ -21,7 +21,7 @@ const CodeBlockPage = () => {
     // Fetch the code block by ID from the backend
     const fetchCodeBlock = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/codeblocks/${blockId}`); 
+        const response = await fetch(`/api/codeblocks/${blockId}`); 
         const block = await response.json();
         setCodeBlock(block);
         setCode(block.code);
