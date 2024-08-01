@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
@@ -8,7 +8,8 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SuccessfulSolution from './SuccessfulSolution';
 
-const CodeBlock = (props = {blockData: null, setBlockCode: () => {}, role: null}) => {
+// This is the CodeBlock view component 
+const CodeBlock = (props) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const solution = props.blockData.solution;

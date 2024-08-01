@@ -7,6 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/CodeBlockPage.css';
 
+// This component fetches all the required data for the CodeBlock view
 const CodeBlockPage = () => {
 
     const { id } = useParams();

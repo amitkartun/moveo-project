@@ -1,6 +1,7 @@
 import React from 'react';
 import "../css/ErrorBoundary.css"
 
+// This is an ErrorBoundary for all the uncatched errors
 class ErrorBoundary extends React.Component {
     constructor(props) {
       super(props);
