@@ -1,0 +1,6 @@
+.error-boundary-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(209, 34, 34)
+}
