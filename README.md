@@ -1,70 +1,185 @@
-# Getting Started with Create React App
+# Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Lobby Page (Home Page)
 
-## Available Scripts
+### Components
 
-In the project directory, you can run:
+- **Header**: Title "Choose code block"
+- **List component**: Display code block items
+- **Code block item component**: For each block in the list
 
-### `npm start`
+### Functionality
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Fetch and display the list of code blocks from the backend
+- Handle click events on code block items
+- Navigate to the Code Block Page when an item is clicked
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### State management
 
-### `npm test`
+- Store the list of code blocks
+- Track loading state while fetching code blocks
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Code Block Page
 
-### `npm run build`
+### Components
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Header**: Display the selected code block title
+- **Code editor component**: Read-only for mentor, editable for student
+- **Role indicator**: Show the user role (mentor or student)
+- **"Back to Lobby" button**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Functionality
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Fetch specific code block data from the backend
+- Implement real-time code synchronization using WebSockets
+- Apply syntax highlighting to the code (using Highlight.js)
+- Handle code changes for the student role
+- Prevent editing for the mentor role
 
-### `npm run eject`
+### State management
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Store the current code block data
+- Track the user's role (mentor or student)
+- Manage the WebSocket connection state
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Shared Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Navigation component**: If needed for future expansion
+- **Loading spinner or skeleton loader**: For async operations
+- **Error message component**: Display any errors
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Styling
 
-## Learn More
+- Responsive design for various screen sizes
+- Consistent color scheme and typography
+- Styling for the code editor (including syntax highlighting)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Routing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Set up routes for the Lobby Page and Code Block Page
+- Handle passing of code block ID to the Code Block Page
 
-### Code Splitting
+## Services/Utilities
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **API service**: Make HTTP requests to the backend
+- **WebSocket service**: Real-time communication
+- **Syntax highlighting utility**: Integration with Highlight.js
 
-### Analyzing the Bundle Size
+## Error Handling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Implement error boundaries for catching and displaying errors
+- Handle network errors and display appropriate messages
 
-### Making a Progressive Web App
+## Performance Considerations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Implement lazy loading for the Code Block Page
+- Optimize re-renders, especially for real-time updates
 
-### Advanced Configuration
+## Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Set up unit tests for components
+- Implement integration tests for page functionality
 
-### Deployment
+## Build and Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Set up build process for production
+- Configure environment variables for different environments (dev, prod)
 
-### `npm run build` fails to minify
+# Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Server Setup
+
+- **Express.js application setup**
+- **Middleware configuration**: e.g., body-parser, cors
+- **Error handling middleware**
+- **Environment configuration**: Development vs production
+
+## Database Connection
+
+- **MongoDB connection setup**
+- **Database models**: Code Block model
+
+## API Routes
+
+- **GET /api/codeblocks**: Retrieve list of all code blocks
+- **GET /api/codeblocks/:id**: Retrieve a specific code block
+- **PUT /api/codeblocks/:id**: Update a specific code block (for real-time updates)
+
+## Controllers
+
+- **CodeBlockController**:
+  - `getCodeBlocks()`: Retrieve all code blocks
+  - `getCodeBlock(id)`: Retrieve a specific code block
+  - `updateCodeBlock(id, code)`: Update a code block
+
+## Models
+
+- **CodeBlock**:
+  - `title`: String
+  - `code`: String
+
+## WebSocket Setup
+
+- **Integration with Socket.io**
+- **Event handlers**:
+  - Client connection
+  - Code change events
+  - Disconnection
+
+## Real-time Communication Logic
+
+- Room creation for each code block
+- Broadcasting code changes to all clients in a room
+- Handling different roles (mentor/student) in a room
+
+## Data Initialization
+
+- Script to populate the database with initial code blocks
+
+## Authentication and Authorization
+
+- Basic role assignment (first user as mentor, others as students)
+- No user authentication required, but prepare for future implementation
+
+## Error Handling
+
+- Custom error classes
+- Error middleware for consistent error responses
+
+## Logging
+
+- Request logging
+- Error logging
+- WebSocket event logging
+
+## Testing
+
+- Unit tests for controllers and models
+- Integration tests for API endpoints
+- WebSocket communication tests
+
+## Security Measures
+
+- Input validation and sanitization
+- Rate limiting
+- CORS configuration
+
+## Performance Optimization
+
+- Caching frequently accessed data
+- Database query optimization
+
+## API Documentation
+
+- Swagger or similar tool for API documentation
+
+## Deployment Considerations
+
+- Dockerization of the application
+- Environment variable management
+- Database migration scripts
+
+## Monitoring and Maintenance
+
+- Health check endpoint
+- Performance monitoring setup
