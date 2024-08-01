@@ -1,3 +1,5 @@
+# Code Collaboration Platform
+
 # Frontend
 
 ## Lobby Page (Home Page)
@@ -5,8 +7,7 @@
 ### Components
 
 - **Header**: Title "Choose code block"
-- **List component**: Display code block items
-- **Code block item component**: For each block in the list
+- **List component**: Display code block item for each block in the list
 
 ### Functionality
 
@@ -14,7 +15,7 @@
 - Handle click events on code block items
 - Navigate to the Code Block Page when an item is clicked
 
-### State management
+### Local state management
 
 - Store the list of code blocks
 - Track loading state while fetching code blocks
@@ -24,29 +25,25 @@
 ### Components
 
 - **Header**: Display the selected code block title
-- **Code editor component**: Read-only for mentor, editable for student
 - **Role indicator**: Show the user role (mentor or student)
+- **Code editor component**: Read-only for mentor, editable for student
 - **"Back to Lobby" button**
+- **Successful Solution component**: Shows smiley when code equals solution
 
 ### Functionality
 
 - Fetch specific code block data from the backend
 - Implement real-time code synchronization using WebSockets
-- Apply syntax highlighting to the code (using Highlight.js)
+- Apply syntax highlighting to the code (using CodeMirror)
 - Handle code changes for the student role
 - Prevent editing for the mentor role
 
-### State management
+### Local state management
 
 - Store the current code block data
 - Track the user's role (mentor or student)
 - Manage the WebSocket connection state
-
-## Shared Components
-
-- **Navigation component**: If needed for future expansion
-- **Loading spinner or skeleton loader**: For async operations
-- **Error message component**: Display any errors
+- Track loading state while fetching code blocks
 
 ## Styling
 
@@ -61,62 +58,52 @@
 
 ## Services/Utilities
 
-- **API service**: Make HTTP requests to the backend
+- **API service**: Make REST requests to the backend
 - **WebSocket service**: Real-time communication
-- **Syntax highlighting utility**: Integration with Highlight.js
 
 ## Error Handling
 
 - Implement error boundaries for catching and displaying errors
 - Handle network errors and display appropriate messages
-
-## Performance Considerations
-
-- Implement lazy loading for the Code Block Page
-- Optimize re-renders, especially for real-time updates
-
-## Testing
-
-- Set up unit tests for components
-- Implement integration tests for page functionality
+- Handle Not found page (404) for wrong URL
 
 ## Build and Deployment
 
 - Set up build process for production
-- Configure environment variables for different environments (dev, prod)
 
 # Backend
 
 ## Server Setup
 
 - **Express.js application setup**
-- **Middleware configuration**: e.g., body-parser, cors
+- **Middleware configuration**: e.g., body-parser
 - **Error handling middleware**
-- **Environment configuration**: Development vs production
+- **Environment configuration**: Store connection string to DB
 
 ## Database Connection
 
 - **MongoDB connection setup**
 - **Database models**: Code Block model
+- **Initial data seed**: Handle initial data using seed script
 
 ## API Routes
 
 - **GET /api/codeblocks**: Retrieve list of all code blocks
 - **GET /api/codeblocks/:id**: Retrieve a specific code block
-- **PUT /api/codeblocks/:id**: Update a specific code block (for real-time updates)
 
 ## Controllers
 
 - **CodeBlockController**:
   - `getCodeBlocks()`: Retrieve all code blocks
   - `getCodeBlock(id)`: Retrieve a specific code block
-  - `updateCodeBlock(id, code)`: Update a code block
 
 ## Models
 
 - **CodeBlock**:
+  - `_id`: ObjectID
   - `title`: String
   - `code`: String
+  - `solution`: String
 
 ## WebSocket Setup
 
@@ -132,25 +119,18 @@
 - Broadcasting code changes to all clients in a room
 - Handling different roles (mentor/student) in a room
 
-## Data Initialization
+# Future Enhancements and Optimizations
 
-- Script to populate the database with initial code blocks
+The following actions are identified as potential enhancements to optimize the current solution but have not been implemented due to time constraints:
 
-## Authentication and Authorization
-
-- Basic role assignment (first user as mentor, others as students)
-- No user authentication required, but prepare for future implementation
-
-## Error Handling
-
-- Custom error classes
-- Error middleware for consistent error responses
+# Backend
 
 ## Logging
 
 - Request logging
 - Error logging
 - WebSocket event logging
+- Inform student when mentor leaves the room
 
 ## Testing
 
@@ -160,26 +140,20 @@
 
 ## Security Measures
 
-- Input validation and sanitization
-- Rate limiting
 - CORS configuration
-
-## Performance Optimization
-
-- Caching frequently accessed data
-- Database query optimization
 
 ## API Documentation
 
-- Swagger or similar tool for API documentation
+- API documentation
 
-## Deployment Considerations
+# Frontend
 
-- Dockerization of the application
-- Environment variable management
-- Database migration scripts
+## Performance Considerations
 
-## Monitoring and Maintenance
+- Implement lazy loading for the Code Block Page
+- Optimize re-renders, especially for real-time updates
 
-- Health check endpoint
-- Performance monitoring setup
+## Testing
+
+- Set up unit tests for components
+- Implement integration tests for page functionality
