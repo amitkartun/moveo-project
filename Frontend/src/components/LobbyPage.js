@@ -41,8 +41,8 @@ const LobbyPage = () => {
 
   return (
     <div className="lobby-page">
-      <h2 className="main-lobby-header">Hello! Welcome to our live coding mentoring</h2>
-      <h1 className="sub-lobby-header">Please choose a code block to start:</h1>
+      <h1 className="main-lobby-header">Hello! Welcome my live coding</h1>
+      <h2 className="sub-lobby-header">Choose code block:</h2>
       <CodeBlockList codeBlocks={codeBlocks} />
     </div>
   );

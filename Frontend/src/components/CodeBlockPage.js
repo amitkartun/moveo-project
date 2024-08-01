@@ -32,14 +32,14 @@ const CodeBlockPage = () => {
     
         subscribeToRoleAssignment((err, assignedRole) => {
             if (err){
-                setError({error: err, message: 'Unable setting role...'});
+                setError({error: err, message: 'Unable setting role'});
             } 
             setRole(assignedRole);  
         });
 
         subscribeToCodeUpdates((err, updatedCode) => {
             if (err){
-                setError({error: err, message: 'Unable updating code...'});
+                setError({error: err, message: 'Unable updating code'});
             } 
             updateCode(updatedCode);
         });
