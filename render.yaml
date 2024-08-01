@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: code-mentor
+    env: node
+    buildCommand: cd Backend && npm install && cd ../Frontend && npm install && npm run build && mv build ../Backend/public
+    startCommand: cd Backend && npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
