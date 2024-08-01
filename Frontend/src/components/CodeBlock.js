@@ -2,26 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import { getCodeBlock } from '../services/api';
 import { initiateSocket, disconnectSocket, subscribeToCodeUpdates, sendCodeUpdate, subscribeToRoleAssignment } from '../services/socket';
 import '../css/CodeBlock.css';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const CodeBlock = () => {
+const CodeBlock = (props = {initialCode: '', blockTitle: ''}) => {
   const { id } = useParams();
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState(props.initialCode);
   const navigate = useNavigate();
   const [role, setRole] = useState(null);
 
   useEffect(() => {
-    const fetchCodeBlock = async () => {
-      try {
-        const block = await getCodeBlock(id);
-        setCode(block.code);
-      } catch (error) {
-        console.error('Error fetching code block:', error);
-      }
-    };
-    fetchCodeBlock();
+    // const fetchCodeBlock = async () => {
+    //   try {
+    //     const block = await getCodeBlock(id);
+    //     setCode(block.code);
+    //     setTitle(block.title); // Set the title of the code block
+    //   } catch (error) {
+    //     console.error('Error fetching code block:', error);
+    //   }
+    // };
+    // fetchCodeBlock();
 
     initiateSocket(id);
     
@@ -52,26 +54,13 @@ const CodeBlock = () => {
 
   return (
     <div className="code-block">
-      <h2>Code Block</h2>
-      <p>Your role: {role}</p>
+      <h2 className="code-block-title">Welcome to '{props.blockTitle}' block</h2>
+      <p className="user-role">Your role: <b>{role}</b></p>
       {role === 'mentor' ? (
         <SyntaxHighlighter language="javascript" style={docco} className="syntax-highlighter">
           {code}
         </SyntaxHighlighter>
       ) : (
-        //--------------------------------------------Trying to solve the Highlighting problem in the Student block
-        // <div className="textarea-wrapper"> 
-        //   <SyntaxHighlighter language="javascript" style={docco} className="syntax-highlighter">
-        //     {code}
-        //   </SyntaxHighlighter>
-        //   <textarea
-        //     value={code}
-        //     onChange={handleCodeChange}
-        //     rows={20}
-        //     cols={80}
-        //   />
-        // </div>
-         //--------------------------------------------
         <textarea
           value={code}
           onChange={handleCodeChange}
@@ -79,7 +68,7 @@ const CodeBlock = () => {
           cols={80}
         />
       )}
-      <button className="back-button" onClick={handleBack}>Back to Lobby</button>
+      <Button variant="outline-primary" className="back-button" onClick={handleBack}>Back to Lobby</Button>
     </div>
   );
 };

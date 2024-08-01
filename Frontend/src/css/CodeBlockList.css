@@ -1,0 +1,20 @@
+.code-block-list {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .code-block-item {
+    background-color: rgb(235, 232, 232);
+    font-size: 14px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .code-block-item:hover,
+  .code-block-item:focus {
+    background-color: rgb(95, 95, 105);
+    color: white;
+  }
+  
