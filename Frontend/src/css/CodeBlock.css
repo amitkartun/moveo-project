@@ -7,91 +7,15 @@
     align-items: center;
 }
 
-textarea {
-    width: 80%;
-    max-width: 800px;
-    margin: 20px 0;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: Arial, sans-serif;
-}
-
-.syntax-highlighter {
-    width: 80%;
-    max-width: 800px;
-    margin: 20px 0;
-    padding: 10px;
-    text-align: left; 
-    height: 370px;
-    border: 1px solid #ddd;
-    background-color: white !important;
-}
-
 .code-block-title {
     font-size: 24px;
     margin-bottom: 15px;
   }
 
 .user-role {
-font-size: 18px;
-color: #555; 
+    font-size: 18px;
+    color: #555; 
 }
-
-/*-------------------------------------------------- Trying to solve the Highlighting problem in the Student block */
-/*
-.textarea-wrapper {
-    position: relative;
-    width: 80%;
-    max-width: 800px;
-    margin: 20px 0;
-}
-
-textarea {
-    width: 100%;
-    max-width: 800px;
-    margin: 25px 0;
-    padding: 7px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: Arial, sans-serif;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: transparent;
-    color: transparent;
-    caret-color: black;
-    z-index: 1;
-}
-
-textarea:focus {
-    outline: none;
-}
-    */
-
-/*
-.syntax-highlighter {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px 0;
-    padding: 10px;
-    text-align: left; 
-    height: 370px;
-    border: 1px solid #ddd;
-
-    text-align: left;
-    /* background: transparent !important; */ 
-    /*pointer-events: none;*/
-    /* position: absolute; */
-    /*top: 0;
-    left: 0;
-    z-index: 0;
-}*/
-
-/*-------------------------------------------------------------------------------------------*/
 
 .back-button {
     padding: 8px 15px;

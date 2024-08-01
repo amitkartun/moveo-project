@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
 import { sendCodeUpdate } from '../services/socket';
 import '../css/CodeBlock.css';
 import Button from 'react-bootstrap/Button';
@@ -11,11 +11,10 @@ const CodeBlock = (props = {blockData: null, setBlockCode: () => {}, role: null}
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const handleCodeChange = (event) => {
-    const newCode = event.target.value;
-    props.setBlockCode(newCode);
-    sendCodeUpdate(id, newCode);
-  };
+  const handleCodeChange =  React.useCallback((value) => {
+    props.setBlockCode(value);
+    sendCodeUpdate(id, value);
+  }, []);
 
   const handleBack = () => {
     navigate('/');
@@ -25,18 +24,14 @@ const CodeBlock = (props = {blockData: null, setBlockCode: () => {}, role: null}
     <div className="code-block">
       <h2 className="code-block-title">Welcome to '{props.blockData.title}' block</h2>
       <p className="user-role">Your role: <b>{props.role}</b></p>
-      {props.role === 'mentor' ? (
-        <SyntaxHighlighter language="javascript" style={docco} className="syntax-highlighter">
-          {props.blockData.code}
-        </SyntaxHighlighter>
-      ) : (
-        <textarea
-          value={props.blockData.code}
+      <CodeMirror
+          value={props.blockData.code} 
+          height = "200px"
+          extensions={[javascript({ jsx: true })]}
           onChange={handleCodeChange}
-          rows={20}
-          cols={80}
-        />
-      )}
+          style={{ textAlign: 'left', minWidth: '50%'}}
+          readOnly = {props.role === 'mentor'}
+      />
       <Button variant="outline-primary" className="back-button" onClick={handleBack}>Back to Lobby</Button>
     </div>
   );

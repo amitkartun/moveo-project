@@ -7,7 +7,6 @@ import Spinner from 'react-bootstrap/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/CodeBlockPage.css';
 
-
 const CodeBlockPage = () => {
 
     const { id } = useParams();
