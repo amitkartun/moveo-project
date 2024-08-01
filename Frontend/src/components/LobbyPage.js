@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import CodeBlockList from './CodeBlockList';
 import { getAllCodeBlocks } from '../services/api';
 import '../css/LobbyPage.css';
+import Spinner from 'react-bootstrap/Spinner';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/CodeBlockPage.css';
 
 const LobbyPage = () => {
   const [codeBlocks, setCodeBlocks] = useState([]);
@@ -25,7 +28,11 @@ const LobbyPage = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Spinner animation="border" role="status" className="spinner-code-block">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
   }
 
   if (error) {

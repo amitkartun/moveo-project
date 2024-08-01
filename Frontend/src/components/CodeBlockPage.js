@@ -5,6 +5,8 @@ import CodeBlock from './CodeBlock';
 import { initiateSocket, subscribeToRoleAssignment, subscribeToCodeUpdates, disconnectSocket } from '../services/socket';
 import Spinner from 'react-bootstrap/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/CodeBlockPage.css';
+
 
 const CodeBlockPage = () => {
 
@@ -50,7 +52,7 @@ const CodeBlockPage = () => {
 
     if (blockData === null || role === null){
         return (
-            <Spinner animation="border" role="status">
+            <Spinner animation="border" role="status" className="spinner-code-block">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           );
